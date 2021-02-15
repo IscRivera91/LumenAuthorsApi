@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Author;
+use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
 
 class AuthorController extends Controller
 {
-
+    use ApiResponse;
     /**
      * Return authors list
      *
