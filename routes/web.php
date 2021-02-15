@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\AuthorController;
+use Illuminate\Support\Facades\Route;
+
 /** @var \Laravel\Lumen\Routing\Router $router */
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +19,14 @@
 
 $router->get('/', function () use ($router) {
     return $router->app->version();
+});
+
+
+Route::group(['prefix'=>'author'], function () {
+    Route::get('/','AuthorController@index');
+    Route::post('/','AuthorController@store');
+    Route::get('/{author}','AuthorController@show');
+    Route::put('/{author}','AuthorController@update');
+    Route::patch('/{author}','AuthorController@update');
+    Route::delete('/{author}','AuthorController@destroy');
 });
