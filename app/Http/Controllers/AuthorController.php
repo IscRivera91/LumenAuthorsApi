@@ -46,12 +46,13 @@ class AuthorController extends Controller
     /**
      * Return an specific author
      * 
-     * @param App\Models\Author $author
+     * @param $author
      * @return Illuminate\Http\Response
      */
-    public function show(Author $author)
+    public function show($author)
     {
-        # code...
+        $author = Author::findOrFail($author);
+        return $this->successResponse($author);
     }
 
     /**
