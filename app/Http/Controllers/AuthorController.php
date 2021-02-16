@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 class AuthorController extends Controller
 {
     use ApiResponse;
+    
     /**
      * Return authors list
      *
@@ -16,7 +17,8 @@ class AuthorController extends Controller
      */
     public function index()
     {
-        # code...
+        $authors = Author::all();
+        return $this->successResponse($authors);
     }
 
     /**
