@@ -59,12 +59,31 @@ class AuthorController extends Controller
      * update the information of an existing author
      * 
      * @param Illuminate\Http\Request $request
-     * @param App\Models\Author $author
+     * @param $author
      * @return Illuminate\Http\Response
      */
-    public function update(Request $request, Author $author)
+    public function update(Request $request, $author)
     {
-        # code...
+        $rules = [
+            'name' => 'max:255',
+            'gender' => 'max:255|in:male,female',
+            'country' => 'max:255'
+        ];
+
+        $this->validate($request,$rules);
+
+        $author = Author::findOrFail($author);
+
+        $author->fill($request->all());
+
+        if ($author->isClean()) {
+            return $this->errorResponse('Almenos un campo debe ser modificado',Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+
+        $author->save();
+
+        return $this->successResponse($author);
+
     }
 
     /**
