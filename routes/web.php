@@ -22,7 +22,7 @@ $router->get('/', function () use ($router) {
 });
 
 
-Route::group(['prefix'=>'author'], function () {
+Route::group(['prefix'=>'authors'], function () {
     Route::get('/','AuthorController@index');
     Route::post('/','AuthorController@store');
     Route::get('/{author}','AuthorController@show');
